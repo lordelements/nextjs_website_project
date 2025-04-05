@@ -27,6 +27,13 @@ import {
   SidebarRail,
 } from "@/components/ui/sidebar"
 
+
+type User = {
+  name: string
+  email: string
+  avatar?: string
+}
+
 // This is sample data.
 const data = {
   user: {
@@ -53,9 +60,8 @@ const data = {
   ],
   navMain: [
     {
-      title: "Home",
+      title: "Pages",
       url: "/dashboard/admin",
-      // icon: Home,
       isActive: true,
       items: [
         {
@@ -77,7 +83,7 @@ const data = {
         },
       ],
     },
-   
+
     {
       title: "Settings",
       url: "#",
@@ -102,10 +108,20 @@ const data = {
       ],
     },
   ],
- 
+
 }
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+  const [user, setUser] = React.useState<User | null>(null)
+
+
+  React.useEffect(() => {
+    const storedUser = localStorage.getItem("user")
+    if (storedUser) {
+      setUser(JSON.parse(storedUser))
+    }
+  }, [])
+
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
@@ -114,10 +130,21 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       <SidebarContent>
         <NavMain items={data.navMain} />
       </SidebarContent>
-      <SidebarFooter>
-        <NavUser user={data.user} />
-      </SidebarFooter>
-      <SidebarRail />
+
+        {/* <NavUser user={data.user} /> */}
+       
+        <SidebarFooter>
+          {user && (
+            <NavUser
+              user={{
+                name: user.name,
+                email: user.email,
+                avatar: user.avatar ?? "/default-avatar.png",
+              }}
+            />
+          )}
+        </SidebarFooter>
+        <SidebarRail />
     </Sidebar>
   )
 }

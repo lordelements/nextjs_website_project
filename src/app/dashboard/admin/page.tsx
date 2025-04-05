@@ -3,13 +3,15 @@
 
 import React, { useEffect, useState } from "react";
 import { User } from "../../types/user";
-import PostList from "../../components/PostList";
+// import PostList from "../../components/PostList";
 // import { AppSidebar } from "../../components/app-sidebar";
 import { useRouter } from "next/navigation";
 import AdminCharts from "../../components/AdminCharts";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
 import { AppSidebar } from "@/components/app-sidebar"
 import { NavUser } from "@/components/nav-user" // adjust import path
+import { AdminPostListsCards } from "../../components/admin/AdminPostListCards"
+
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -71,20 +73,22 @@ export default function AdminDashboard() {
                   </BreadcrumbItem>
                 </BreadcrumbList>
               </Breadcrumb>
-              <h1 className="text-dark-600">Welcome Admin: {user.name}</h1>
+              {/* <h1 className="text-dark-600">Welcome Admin: {user.name}</h1>
               <button
                 onClick={handleLogout}
                 className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md mt-4"
               >
                 Logout
-              </button>
+              </button> */}
             </div>
           </header>
           <div>
             <div className="bg-muted/50 min-h-[100vh] flex-1 rounded-xl md:min-h-min">
+              <div>
+                <AdminPostListsCards />
+              </div>
               <AdminCharts />
             </div>
-            <PostList />
           </div>
         </SidebarInset>
       </SidebarProvider>

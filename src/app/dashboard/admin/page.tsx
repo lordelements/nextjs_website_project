@@ -73,13 +73,6 @@ export default function AdminDashboard() {
                   </BreadcrumbItem>
                 </BreadcrumbList>
               </Breadcrumb>
-              {/* <h1 className="text-dark-600">Welcome Admin: {user.name}</h1>
-              <button
-                onClick={handleLogout}
-                className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md mt-4"
-              >
-                Logout
-              </button> */}
             </div>
           </header>
           <div>

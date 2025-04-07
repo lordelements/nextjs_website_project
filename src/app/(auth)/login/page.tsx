@@ -147,28 +147,6 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
-// async function loginUser(email: string, password: string) {
-//   const response = await fetch("https://jsonplaceholder.typicode.com/users");
-//   const users = await response.json();
-
-//   const user = users.find((u: { email: string }) => u.email === email);
-
-//   if (!user) {
-//     return { success: false, message: "User not found" };
-//   }
-
-//   // Check if admin
-//   if (email === "admin@admin.com" && password === "admin123") {
-//     return { success: true, user: { ...user, role: "admin" } };
-//   }
-
-//   // Regular user logic (mock password check)
-//   if (password === "password123") {
-//     return { success: true, user: { ...user, role: "user" } };
-//   }
-
-//   return { success: false, message: "Incorrect password" };
-// }
 
 async function loginUser(email: string, password: string) {
   // Manual admin check
@@ -300,4 +278,3 @@ export default function LoginForm() {
     </div>
   );
 }
-

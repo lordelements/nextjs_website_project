@@ -6,6 +6,8 @@ import { fetchUsers } from "./lib/api";
 import { UserCard } from "./components/UserCard";
 import { User } from "./types/user";
 
+import { Navbar } from "./components/Navbar";
+import { Footer } from "./components/Footer";
 
 export default function Home() {
    const { data: users = [], error, isLoading } = useQuery<User[]>({
@@ -32,10 +34,8 @@ export default function Home() {
       );
 
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      {/* <Contact/> */}
+    <><Navbar /><div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
       <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-
         <section className="bg-white dark:bg-gray-900">
           <div className="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-12">
             <h1 className="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white">We invest in the world’s potential</h1>
@@ -264,8 +264,7 @@ export default function Home() {
             ))}
           </div>
         </section>
-
       </main>
-    </div>
+    </div><Footer /></>
   );
 }

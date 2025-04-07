@@ -3,20 +3,13 @@
 import * as React from "react"
 import {
   AudioWaveform,
-  BookOpen,
-  Bot,
   Command,
-  Frame,
   GalleryVerticalEnd,
-  Map,
-  PieChart,
-  Settings2,
-  SquareTerminal,
   Home,
+  Settings2,
 } from "lucide-react"
 
 import { NavMain } from "@/components/nav-main"
-import { NavProjects } from "@/components/nav-projects"
 import { NavUser } from "@/components/nav-user"
 import { TeamSwitcher } from "@/components/team-switcher"
 import {
@@ -71,11 +64,13 @@ const data = {
         },
         {
           title: "Users Lists",
-          url: "/users",
+          // url: "/users",
+          url: "/dashboard/admin/users",
         },
         {
           title: "Posts Lists",
-          url: "/dashboard/post",
+          // url: "/dashboard/post",
+          url: "/dashboard/admin/post",
         },
         {
           title: "Settings",

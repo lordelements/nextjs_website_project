@@ -3,15 +3,15 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
-import { AppSidebar } from "@/components/app-sidebar"
-
+import React from "react";
+import UsersNavbar from "../../components/users/UsersNavbar";
 
 // Types
 type User = {
   id: number;
   name: string;
   email: string;
+  avatar?: string;
 };
 
 type Post = {
@@ -22,15 +22,18 @@ type Post = {
 };
 
 export default function RegularUserDashboard() {
-  const [user] = useState<User | null>(() => {
-    if (typeof window !== "undefined") {
-      return JSON.parse(localStorage.getItem("user") || "null");
-    }
-    return null;
-  });
-
+  const [user, setUser] = useState<User | null>(null);
   const [posts, setPosts] = useState<Post[]>([]);
   const [loading, setLoading] = useState(true);
+
+  const router = useRouter();
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+    }
+  }, []);
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -42,28 +45,31 @@ export default function RegularUserDashboard() {
       setLoading(false);
     };
 
-    if (user) fetchPosts();
+    if (user) {
+      fetchPosts();
+    }
   }, [user]);
-
-
-  // Inside your component
-  const router = useRouter();
 
   const handleLogout = () => {
     localStorage.removeItem("user");
     router.push("/login");
   };
 
-  if (loading) return <p className="text-center mt-10">Loading your posts...</p>;
-  if (!user) return <p className="text-center mt-10">User not logged in.</p>;
+  if (!user) {
+    return <p className="text-center mt-10">User not logged in.</p>;
+  }
+
+  if (loading) {
+    return <p className="text-center mt-10">Loading your posts...</p>;
+  }
 
   return (
-    <SidebarProvider>
-      <AppSidebar />
-      <SidebarTrigger />
+    <>
+      <UsersNavbar user={user} />
+
       <div className="max-w-4xl mx-auto py-10 px-4 w-full">
         <h1 className="text-2xl font-bold mb-6">Welcome, {user.name}!</h1>
-        <h2 className="text-xl mb-4">Your Posts</h2>
+        <h2 className="text-xl mb-4">Posts Lists</h2>
 
         <button
           onClick={handleLogout}
@@ -72,11 +78,10 @@ export default function RegularUserDashboard() {
           Logout
         </button>
 
-
         {posts.length === 0 ? (
           <p className="text-gray-500">You have no posts.</p>
         ) : (
-          <ul className="space-y-6">
+          <ul className="space-y-6 mt-6">
             {posts.map((post) => (
               <li key={post.id} className="border p-4 rounded shadow">
                 <Link href={`/dashboard/post/${post.id}`}>
@@ -90,6 +95,6 @@ export default function RegularUserDashboard() {
           </ul>
         )}
       </div>
-    </SidebarProvider>
+    </>
   );
 }

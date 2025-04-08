@@ -38,11 +38,6 @@ export default function AdminDashboard() {
   // Inside your component
   const router = useRouter();
 
-  const handleLogout = () => {
-    localStorage.removeItem("user");
-    router.push("/login");
-  };
-
   if (!user) return <p>Loading...</p>;
 
   return (

@@ -1,4 +1,9 @@
-import { useRouter } from "next/router";
+// app/dashboard/user/profile/[id]/page.tsx
+
+/* eslint-disable @next/next/no-img-element */
+"use client";
+
+import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 
@@ -11,14 +16,12 @@ type UserProfile = {
 };
 
 export default function ProfilePage() {
-  const router = useRouter();
-  const { id } = router.query;
+  const { id } = useParams();
   const [userProfile, setUserProfile] = useState<UserProfile | null>(null);
-  const [loading, setLoading] = useState<boolean>(true);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (id) {
-      // Fetch user data from API based on ID (Here, we simulate with JSONPlaceholder API)
       fetch(`https://jsonplaceholder.typicode.com/users/${id}`)
         .then((res) => res.json())
         .then((data) => {
@@ -27,7 +30,7 @@ export default function ProfilePage() {
             name: data.name,
             email: data.email,
             avatar: `https://robohash.org/${data.id}?set=set5`,
-            bio: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", // Add more user details as needed
+            bio: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
           });
           setLoading(false);
         })
@@ -38,13 +41,8 @@ export default function ProfilePage() {
     }
   }, [id]);
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
-  if (!userProfile) {
-    return <div>User not found</div>;
-  }
+  if (loading) return <div>Loading...</div>;
+  if (!userProfile) return <div>User not found</div>;
 
   return (
     <div className="bg-gray-50 min-h-screen py-6 px-4 sm:px-6 lg:px-8">

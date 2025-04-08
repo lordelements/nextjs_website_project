@@ -17,6 +17,13 @@
         "aria-valid-attr-value": "off"
       }
     ],
-    "button-type": "off"
+    "button-type": "off",
+    "axe/structure": "off",
+    "axe/forms": [
+      "default",
+      {
+        "label": "off"
+      }
+    ]
   }
 }

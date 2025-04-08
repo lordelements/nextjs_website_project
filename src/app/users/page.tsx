@@ -4,7 +4,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { fetchUsers } from "../lib/api";
 import { User } from "../types/user";
-import { UsersIcon } from "@heroicons/react/24/solid";
 import Link from "next/link";
 import UserMap from "../components/UserMap";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"

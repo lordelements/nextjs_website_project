@@ -1,15 +1,13 @@
-// app/dashboard/admin/page.tsx
+
 "use client";
 
 import React, { useEffect, useState } from "react";
 import { User } from "../../types/user";
-// import PostList from "../../components/PostList";
-// import { AppSidebar } from "../../components/app-sidebar";
 import { useRouter } from "next/navigation";
 import AdminCharts from "../../components/AdminCharts";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
 import { AppSidebar } from "@/components/app-sidebar"
-import { NavUser } from "@/components/nav-user" // adjust import path
+import { NavUser } from "@/components/nav-user" 
 import { AdminPostListsCards } from "../../components/admin/AdminPostListCards"
 
 import {

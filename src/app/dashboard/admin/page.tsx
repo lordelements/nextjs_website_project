@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 import AdminCharts from "../../components/AdminCharts";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
 import { AppSidebar } from "@/components/app-sidebar"
-import { NavUser } from "@/components/nav-user" 
+// import { NavUser } from "@/components/nav-user" 
 import { AdminPostListsCards } from "../../components/admin/AdminPostListCards"
 
 import {
